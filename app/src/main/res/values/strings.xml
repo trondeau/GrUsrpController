@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">GrUsrpController</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="title_activity_usrp_controller">USRP Controller</string>
+    <string name="title_activity_command_poster">Command Poster</string>
+
+    <string name="default_hostname">davos.trondeau.com</string>
+    <string name="default_port">9090</string>
+
+    <string-array name="commandSpinner">
+        <item>freq</item>
+        <item>gain</item>
+        <item>rate</item>
+        <item>bandwidth</item>
+        <item>antenna</item>
+    </string-array>
+
+    <string-array name="blockNameSpinner">
+        <item>gr uhd usrp sink0</item>
+        <item>gr uhd usrp source0</item>
+    </string-array>
+</resources>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="org.gnuradio.grusrpcontroller.GrUsrpController"
+    tools:showIn="@layout/activity_gr_usrp_controller">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Host Name"
+        android:id="@+id/hostNameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/hostNameEditText"
+        android:textSize="@dimen/EditTextSize"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/hostNameEditText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/hostNameTextView"
+        android:inputType="text"
+        android:text="@string/default_hostname" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Port Number"
+        android:id="@+id/portNumTextView"
+        android:textSize="@dimen/EditTextSize"
+        android:textStyle="bold"
+        android:layout_below="@+id/hostNameEditText"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/portNumEditText"
+        android:layout_below="@+id/hostNameEditText"
+        android:layout_alignEnd="@+id/hostNameEditText"
+        android:layout_toEndOf="@+id/portNumTextView"
+        android:text="@string/default_port"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Block Name"
+        android:id="@+id/blockNameTextView"
+        android:textSize="@dimen/EditTextSize"
+        android:textStyle="bold"
+        android:layout_below="@+id/portNumEditText"
+        android:layout_alignParentStart="true"
+        android:textColor="#72706f" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send Command"
+        android:id="@+id/sendCommandButton"
+        android:onClick="sendOnClick"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="44dp" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/blockNameSpinner"
+        android:layout_toEndOf="@+id/portNumTextView"
+        android:spinnerMode="dialog"
+        android:nestedScrollingEnabled="false"
+        android:layout_below="@+id/portNumEditText" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/commandSpinner"
+        android:spinnerMode="dropdown"
+        android:nestedScrollingEnabled="false"
+        android:layout_below="@+id/blockNameSpinner"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/blockNameSpinner" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/commandEditText"
+        android:text="0"
+        android:inputType="number"
+        android:layout_below="@+id/blockNameSpinner"
+        android:layout_alignEnd="@+id/hostNameEditText"
+        android:layout_toEndOf="@+id/sendCommandButton"
+        android:layout_alignBottom="@+id/commandSpinner" />
+
+</RelativeLayout>
