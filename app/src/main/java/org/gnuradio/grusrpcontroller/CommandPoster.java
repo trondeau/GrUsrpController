@@ -33,12 +33,10 @@ public class CommandPoster extends Activity {
             this.mConnected = false;
             this.mUnitsVal = unitsval;
 
-            if(this.mCmdName != "antenna") {
-                this.mCmdVald = Double.valueOf(mCmdVal);
+            this.mCmdVald = Double.valueOf(mCmdVal);
+            if(!this.mCmdName.equals("antenna") && !this.mCmdName.equals("gain")) {
                 this.mCmdVald *= mUnitsVal;
             }
-            this.mCmdVald = Double.valueOf(mCmdVal);
-            this.mCmdVald = this.mCmdVald * this.mUnitsVal;
         }
 
         public void run() {
@@ -60,7 +58,6 @@ public class CommandPoster extends Activity {
         }
     }
 
-    private RunNetworkThread networkthread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,24 +76,26 @@ public class CommandPoster extends Activity {
         final Integer port = Integer.parseInt(portNumber);
 
         Double unitsMult = 1.0;
-        if(unitsValue.equals(new String("Hz"))) {
-            unitsMult = 1.0;
-        }
-        else if(unitsValue.equals(new String("kHz"))) {
-            unitsMult = 1000.0;
-        }
-        else if(unitsValue.equals(new String("MHz"))) {
-            unitsMult = 1000000.0;
-        }
-        else if(unitsValue.equals(new String("GHz"))) {
-            unitsMult = 1000000000.0;
+        switch (unitsValue) {
+            case "Hz":
+                unitsMult = 1.0;
+                break;
+            case "kHz":
+                unitsMult = 1000.0;
+                break;
+            case "MHz":
+                unitsMult = 1000000.0;
+                break;
+            case "GHz":
+                unitsMult = 1000000000.0;
+                break;
         }
 
         Log.d("CommandPoster", "Connecting to: " + hostName + ":" + port);
         Log.d("CommandPoster", "Issuing command " + commandName + ": " + commandValue + " "
-                +unitsValue + " (" + unitsMult + ") " + " to block " + blockName);
+                +unitsValue + " (" + unitsMult + ") to block " + blockName);
 
-
+        RunNetworkThread networkthread;
         networkthread = new RunNetworkThread(hostName, port, blockName,
                 commandName, commandValue, unitsMult);
 
