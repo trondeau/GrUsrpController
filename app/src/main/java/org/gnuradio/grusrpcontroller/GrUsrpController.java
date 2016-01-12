@@ -24,11 +24,20 @@ public class GrUsrpController extends Activity {
         commandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         commandSpinner.setAdapter(commandAdapter);
 
+        Spinner unitsSpinner = (Spinner)findViewById(R.id.unitsSpinner);
+        ArrayAdapter<CharSequence> unitsAdapter = ArrayAdapter.createFromResource(this, R.array.unitsFreqSpinner, R.layout.spinner_style);
+        unitsAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        unitsSpinner.setAdapter(unitsAdapter);
+
+        int pos = unitsAdapter.getPosition("MHz");
+        unitsSpinner.setSelection(pos);
+
         Spinner blockNameSpinner = (Spinner)findViewById(R.id.blockNameSpinner);
         ArrayAdapter<CharSequence> blockNameAdapter = ArrayAdapter.createFromResource(this, R.array.blockNameSpinner, R.layout.spinner_style);
         blockNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         blockNameSpinner.setAdapter(blockNameAdapter);
     }
+
 
     public void sendOnClick(View view) {
         Log.d("GrUsrpController", "sendOnClick Called");
@@ -40,20 +49,24 @@ public class GrUsrpController extends Activity {
         EditText commandEditText = (EditText) findViewById(R.id.commandEditText);
         Spinner commandSpinner = (Spinner)findViewById(R.id.commandSpinner);
         Spinner blockNameSpinner = (Spinner)findViewById(R.id.blockNameSpinner);
+        Spinner unitsSpinner = (Spinner)findViewById(R.id.unitsSpinner);
 
         String hostName = hostNameText.getText().toString();
         String portNumber = portNumberText.getText().toString();
         String blockName = blockNameSpinner.getSelectedItem().toString();
         String commandName = commandSpinner.getSelectedItem().toString();
         String commandValue = commandEditText.getText().toString();
+        String unitsValue = unitsSpinner.getSelectedItem().toString();
 
         intent.putExtra("org.gnuradio.grusrpcontroller.hostname", hostName);
         intent.putExtra("org.gnuradio.grusrpcontroller.portnumber", portNumber);
         intent.putExtra("org.gnuradio.grusrpcontroller.blockname", blockName);
         intent.putExtra("org.gnuradio.grusrpcontroller.commandname", commandName);
         intent.putExtra("org.gnuradio.grusrpcontroller.commandvalue", commandValue);
+        intent.putExtra("org.gnuradio.grusrpcontroller.unitsvalue", unitsValue);
 
-        Log.d("GrUsrpControlloer", "Intent info " + commandName + ": " + commandValue + " to block " + blockName);
+        Log.d("GrUsrpControlloer", "Intent info " + commandName + ": " + commandValue + " "
+                + unitsValue + " to block " + blockName);
 
         Log.d("GrUsrpController", "sendOnClick calling startActivity");
         startActivity(intent);

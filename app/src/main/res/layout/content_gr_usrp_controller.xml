@@ -98,10 +98,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/commandEditText"
         android:text="0"
-        android:inputType="number"
+        android:inputType="number|numberDecimal"
         android:layout_below="@+id/blockNameSpinner"
         android:layout_alignEnd="@+id/hostNameEditText"
         android:layout_toEndOf="@+id/sendCommandButton"
         android:layout_alignBottom="@+id/commandSpinner" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/unitsSpinner"
+        android:spinnerMode="dropdown"
+        android:nestedScrollingEnabled="false"
+        android:layout_below="@+id/commandEditText"
+        android:layout_alignEnd="@+id/commandEditText"
+        android:layout_alignStart="@+id/commandEditText" />
 
 </RelativeLayout>

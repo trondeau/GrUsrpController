@@ -20,4 +20,12 @@
         <item>gr uhd usrp sink0</item>
         <item>gr uhd usrp source0</item>
     </string-array>
+
+    <string-array name="unitsFreqSpinner">
+        <item>Hz</item>
+        <item>kHz</item>
+        <item>MHz</item>
+        <item>GHz</item>
+    </string-array>
+
 </resources>
